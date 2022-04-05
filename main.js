@@ -1,6 +1,10 @@
+import { getRandomPicture } from "./picsum-gateway.js"
 
 document.getElementById("image_update_button")
 .addEventListener("click", () => {
-    const imageHtml = `<img src=assets/cute_cat.jpg></img>`
-    document.getElementById("image_div").innerHTML = imageHtml
+    const imagePromise = getRandomPicture()
+    imagePromise.then(data => {
+        const imageHtml = `<img src=${data.url}></img>`
+        document.getElementById("image_div").innerHTML = imageHtml
+    })
 })
